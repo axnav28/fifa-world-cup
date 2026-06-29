@@ -19,7 +19,8 @@ st.set_page_config(
 )
 
 # ── Resolve paths relative to repo root ──────────────────────────────────────
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEPLOY_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR   = os.path.dirname(DEPLOY_DIR)
 
 @st.cache_resource
 def load_model():
