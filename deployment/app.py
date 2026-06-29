@@ -108,7 +108,7 @@ html, body, [class*="css"], .stMarkdown {
 /* Background layout gradient */
 .stApp {
     background: radial-gradient(circle at 50% 0%, #0d162d 0%, #050814 100%);
-    color: #f1f5f9;
+    color: #ffffff;
 }
 
 /* Header UI Elements */
@@ -124,14 +124,14 @@ html, body, [class*="css"], .stMarkdown {
     font-size: 3rem;
     font-weight: 800;
     margin: 0;
-    color: #ffffff;
+    color: #ffffff !important;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .subtitle {
     font-size: 1.1rem;
-    color: #c5a059; /* Muted Gold */
+    color: #c5a059 !important; /* Muted Gold */
     margin-top: 0.5rem;
     font-weight: 500;
     letter-spacing: 2px;
@@ -152,7 +152,7 @@ html, body, [class*="css"], .stMarkdown {
     padding: 0.5rem 1.2rem;
     font-size: 0.8rem;
     font-weight: 600;
-    color: #94a3b8;
+    color: #ffffff !important;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -160,7 +160,7 @@ html, body, [class*="css"], .stMarkdown {
 .badge-highlight {
     background: rgba(212, 175, 55, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.25);
-    color: #d4af37;
+    color: #d4af37 !important;
 }
 
 /* Glassmorphism container for selectors */
@@ -172,6 +172,10 @@ html, body, [class*="css"], .stMarkdown {
     padding: 2.5rem;
     box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     margin-bottom: 2.5rem;
+}
+
+.selector-card h3 {
+    color: #ffffff !important;
 }
 
 /* Outcome Result Cards */
@@ -201,13 +205,13 @@ html, body, [class*="css"], .stMarkdown {
     text-transform: uppercase;
     font-size: 0.75rem;
     letter-spacing: 2px;
-    color: #94a3b8;
+    color: #ffffff !important;
     font-weight: 700;
 }
 
 .result-team {
     font-size: 1rem;
-    color: #ffffff;
+    color: #ffffff !important;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -226,7 +230,7 @@ html, body, [class*="css"], .stMarkdown {
     justify-content: space-between;
     margin-bottom: 0.75rem;
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #ffffff !important;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -248,13 +252,13 @@ html, body, [class*="css"], .stMarkdown {
 
 .progress-fill-draw {
     height: 100%;
-    background: #475569; /* Muted slate */
+    background: #8e9bb0; /* Visible Muted Slate/Blue */
     transition: width 0.8s ease;
 }
 
 .progress-fill-away {
     height: 100%;
-    background: #8b0000; /* Dark Red */
+    background: #cc2424; /* Visible Bright Red */
     transition: width 0.8s ease;
 }
 
@@ -270,24 +274,41 @@ html, body, [class*="css"], .stMarkdown {
 .comparison-val {
     font-size: 2rem;
     font-weight: 700;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .comparison-lbl {
     font-size: 0.75rem;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     margin-top: 0.4rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
 }
 
-/* General Streamlit Overrides */
-div[data-baseweb="select"] > div {
-    background-color: rgba(13, 22, 45, 0.7) !important;
-    border-color: rgba(212, 175, 55, 0.15) !important;
+/* Force all text in dropdown inputs, lists, selections, and menus to be white on dark backgrounds */
+div[data-baseweb="select"] > div,
+div[role="listbox"] li, 
+div[role="listbox"] div,
+[data-testid="stSelectbox"] div,
+[data-testid="stSelectbox"] span,
+[data-testid="stSelectbox"] select,
+[data-testid="stSelectbox"] label,
+.stSelectbox p,
+.stSelectbox label,
+.stSelectbox div {
     color: #ffffff !important;
-    border-radius: 4px !important;
+    background-color: #0b1120 !important;
+}
+
+/* Dropdown popover list styling */
+ul[role="listbox"] {
+    background-color: #0b1120 !important;
+    border: 1px solid rgba(212, 175, 55, 0.25) !important;
+}
+
+ul[role="listbox"] li:hover {
+    background-color: #1e293b !important;
 }
 
 .stTabs [data-baseweb="tab-list"] {
@@ -302,7 +323,7 @@ div[data-baseweb="select"] > div {
 .stTabs [data-baseweb="tab"] {
     font-size: 1rem;
     font-weight: 700;
-    color: #94a3b8;
+    color: #94a3b8 !important;
     background-color: transparent !important;
     border: none !important;
     padding: 0.6rem 1.5rem;
@@ -322,7 +343,7 @@ div[data-baseweb="select"] > div {
     border-radius: 6px;
     padding: 1.2rem;
     margin-top: 2rem;
-    color: #d4af37;
+    color: #d4af37 !important;
     font-weight: 600;
     letter-spacing: 0.5px;
 }
@@ -334,10 +355,6 @@ st.markdown("""
 <div class="header-container">
     <div class="main-title">FIFA World Cup 2026</div>
     <div class="subtitle">Match Outcome & Probability Forecast Engine</div>
-    <div class="model-badge-container">
-        <span class="badge">Model: {best_model_name}</span>
-        <span class="badge badge-highlight">Test Accuracy: {accuracy:.1f}% on 2022 WC</span>
-    </div>
 </div>
 """.format(
     best_model_name=MODEL_NAME,
@@ -390,7 +407,7 @@ with tab_predict:
             st.markdown(f"""
             <div class="result-box {winner_class}">
                 <div class="result-label">Home Win</div>
-                <div class="result-prob" style="color: #0f4c81;">{home_win_pct:.1f}%</div>
+                <div class="result-prob" style="color: #60a5fa;">{home_win_pct:.1f}%</div>
                 <div class="result-team">{home_team}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -400,7 +417,7 @@ with tab_predict:
             st.markdown(f"""
             <div class="result-box {winner_class}">
                 <div class="result-label">Draw</div>
-                <div class="result-prob" style="color: #94a3b8;">{draw_pct:.1f}%</div>
+                <div class="result-prob" style="color: #c9d1d9;">{draw_pct:.1f}%</div>
                 <div class="result-team">Close Match</div>
             </div>
             """, unsafe_allow_html=True)
@@ -410,7 +427,7 @@ with tab_predict:
             st.markdown(f"""
             <div class="result-box {winner_class}">
                 <div class="result-label">Away Win</div>
-                <div class="result-prob" style="color: #8b0000;">{away_win_pct:.1f}%</div>
+                <div class="result-prob" style="color: #fb7185;">{away_win_pct:.1f}%</div>
                 <div class="result-team">{away_team}</div>
             </div>
             """, unsafe_allow_html=True)
@@ -441,7 +458,7 @@ with tab_predict:
 
 # 📊 TAB 2: HEAD-TO-HEAD COMPARISON
 with tab_compare:
-    st.markdown("<h3 style='text-align:center;margin-bottom:2rem;text-transform:uppercase;letter-spacing:1px;font-size:1.3rem;'>Side-by-Side Analytics</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center;margin-bottom:2rem;text-transform:uppercase;letter-spacing:1px;font-size:1.3rem;color:#ffffff;'>Side-by-Side Analytics</h3>", unsafe_allow_html=True)
 
     h_rank, h_pts, h_wr, h_exp = get_team_features(home_team, MEDIAN_RANK, MEDIAN_POINTS, home_wr_dict, GLOBAL_HOME_WR_MED)
     a_rank, a_pts, a_wr, a_exp = get_team_features(away_team, MEDIAN_RANK, MEDIAN_POINTS, away_wr_dict, GLOBAL_AWAY_WR_MED)
@@ -450,7 +467,7 @@ with tab_compare:
     col_h_stats, col_label, col_a_stats = st.columns([4, 2, 4])
     
     with col_h_stats:
-        st.markdown(f"<h4 style='color:#0f4c81;text-align:right;text-transform:uppercase;letter-spacing:1px;'>{home_team}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='color:#60a5fa;text-align:right;text-transform:uppercase;letter-spacing:1px;'>{home_team}</h4>", unsafe_allow_html=True)
         st.markdown(f"""
         <div class="comparison-card" style="margin-bottom:1rem;">
             <div class="comparison-val">#{int(h_rank)}</div>
@@ -477,7 +494,7 @@ with tab_compare:
         st.markdown("<p style='text-align:center;font-size:1.1rem;font-weight:700;margin-top:4.8rem;color:#64748b;'>VS</p>", unsafe_allow_html=True)
 
     with col_a_stats:
-        st.markdown(f"<h4 style='color:#8b0000;text-align:left;text-transform:uppercase;letter-spacing:1px;'>{away_team}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='color:#fb7185;text-align:left;text-transform:uppercase;letter-spacing:1px;'>{away_team}</h4>", unsafe_allow_html=True)
         st.markdown(f"""
         <div class="comparison-card" style="margin-bottom:1rem;">
             <div class="comparison-val">#{int(a_rank)}</div>
